@@ -1,5 +1,209 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0; url=http://www.igor.pro.br" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Igor Steinmacher — Open Source Sustainability Research</title>
+<meta name="description" content="Igor Steinmacher is an Associate Professor at Northern Arizona University researching open source software sustainability, onboarding, governance, and AI in software ecosystems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a class="brand" href="index.html">Igor Steinmacher</a>
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="#students">Students</a>
+      <a href="#service">Service</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <p class="role">Associate Professor · Northern Arizona University</p>
+    <h1>Keeping open source software — and the people behind it — sustainable.</h1>
+    <p class="thesis">
+      I study how software communities <em>welcome newcomers</em>, retain maintainers,
+      govern themselves, and adapt as <em>AI reshapes how software is built</em>.
+      I co-lead the RESHAPE Lab at the School of Informatics, Computing and Cyber
+      Systems, where I am also Associate Director for Graduate Programs and Academic Affairs.
+    </p>
+    <div class="btn-row">
+      <a class="btn solid" href="publications.html">Publications</a>
+      <a class="btn" href="https://scholar.google.com/citations?user=I8o8rfoAAAAJ">Google Scholar</a>
+      <a class="btn" href="https://github.com/igorsteinmacher">GitHub</a>
+      <a class="btn" href="Steinmacher_CV.pdf">CV (PDF)</a>
+    </div>
+    <p class="contrib-caption">// every square is a contribution — my research asks who makes them, and why they stay</p>
+    <div class="contrib" id="contrib" aria-hidden="true"></div>
+  </div>
+
+  <section id="about">
+    <h2>About</h2>
+    <p class="lead">
+      I am an Associate Professor at Northern Arizona University and Associate Director for
+      Graduate Programs and Academic Affairs at the School of Informatics, Computing and
+      Cyber Systems (SICCS). For more than a decade my research has focused on the
+      sustainability of open source software: how newcomers onboard, how mentors and
+      maintainers work, how diverse contributors find their place, and how projects govern
+      themselves. More recently, my group studies how AI and conversational agents change
+      these socio-technical systems.
+    </p>
+    <p>
+      I hold a PhD in Computer Science from the University of São Paulo (2015) and was a
+      visiting scholar at the University of California, Irvine. Before joining NAU I was a
+      faculty member at the Federal University of Technology – Paraná (UTFPR), Brazil. My
+      work is funded by the National Science Foundation and the Alfred P. Sloan Foundation,
+      and has received multiple ACM SIGSOFT Distinguished Paper and Best Paper awards.
+    </p>
+    <p>
+      I co-lead the <a href="https://reshapelab.site">RESHAPE Lab</a> with Marco Gerosa.
+      Outside the university, I founded DataTruth AI, a consultancy helping organizations
+      fix their data foundations before adopting AI.
+    </p>
+  </section>
+
+  <section id="research">
+    <h2>Research</h2>
+    <div class="themes">
+      <div class="theme">
+        <span class="tag">onboarding &amp; retention</span>
+        <h3>Newcomers and maintainers</h3>
+        <p>Barriers faced by newcomers, mentoring, quasi-contributors, maintainer burnout,
+        and forecasting core-developer inactivity (the DisTrac tool).</p>
+      </div>
+      <div class="theme">
+        <span class="tag">governance</span>
+        <h3>How projects rule themselves</h3>
+        <p>How open source projects define, document, and evolve roles and
+        decision-making — and what that means for long-term sustainability.</p>
+      </div>
+      <div class="theme">
+        <span class="tag">ai × oss</span>
+        <h3>AI in software ecosystems</h3>
+        <p>Conversational agents for contributors (CommUnityBuddy, Sloan-funded),
+        developer trust in generative AI, and LLMs in empirical SE research.</p>
+      </div>
+      <div class="theme">
+        <span class="tag">education</span>
+        <h3>Learning through open source</h3>
+        <p>Gamified environments that scaffold student contributions (OSSDoorway),
+        active learning, and bridges between universities and OSS communities.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Funded Projects</h2>
+    <ul class="clean">
+      <li><strong>Sloan Foundation (2026)</strong> — Enhancing onboarding in open source
+      scientific software with large language models (lead PI).</li>
+      <li><strong>CommUnityBuddy</strong> — a conversational agent supporting open source
+      contributors. Alfred P. Sloan Foundation.</li>
+      <li><strong>NSF POSE</strong> — expanding the data.table ecosystem for efficient
+      big data manipulation in R (lead PI).</li>
+      <li><strong>NSF HSI</strong> — a learning environment for an open-source
+      contribution model (lead PI).</li>
+      <li><strong>NSF IUSE</strong> — scaffolding computational thinking in introductory
+      CS through a conversational agent (lead PI).</li>
+      <li><strong>DisTrac</strong> — forecasting core-developer inactivity in OSS projects,
+      with the University of Bari.</li>
+    </ul>
+  </section>
+
+  <section id="teaching">
+    <h2>Teaching</h2>
+    <p>
+      I have taught in higher education for over fifteen years, at undergraduate and
+      graduate levels — software engineering, programming foundations, research methods,
+      and open source development. I chaired the proposal committee for NAU's new Bachelor of Science in Artificial
+      Intelligence, an interdisciplinary degree starting Fall 2026. My course materials
+      live on <a href="https://github.com/igorsteinmacher">GitHub</a>, and my CS-education
+      research (gamified OSS learning, active learning) feeds directly back into the
+      classroom.
+    </p>
+  </section>
+
+  <section id="students">
+    <h2>Students</h2>
+    <p>
+      I have supervised ten PhD students to completion as principal supervisor or
+      co-supervisor — including Bianca Trinkenreich, whose dissertation received the
+      2024 ACM SIGSOFT Outstanding Dissertation Award. I currently advise PhD students
+      Pedro Oliveira, Jacob Penney, and Morgan Nicholson. My former students hold faculty
+      positions at Colorado State, Radboud University, the University of Hawaii, and
+      Brazilian federal universities.
+      Prospective students interested in open source sustainability, human aspects of
+      software engineering, or AI in software ecosystems are welcome to reach out.
+    </p>
+  </section>
+
+  <section id="service">
+    <h2>Service &amp; Leadership</h2>
+    <ul class="clean">
+      <li>General Chair — International Conference on Mining Software Repositories (MSR 2026)</li>
+      <li>General Chair — IEEE International Conference on Software Maintenance and Evolution (ICSME 2024)</li>
+      <li>General Co-Chair — IEEE International Conference on Program Comprehension (ICPC 2024)</li>
+      <li>Editorial Boards — Empirical Software Engineering (since 2022); Journal of Software: Evolution and Process (since 2021)</li>
+      <li>Program Co-Chair — SBES 2024, OSS 2022, ICSSP 2022, ICGSE 2020</li>
+      <li>Program committees — ICSE, MSR, EASE, CSCW, ICSME; reviewer for TSE, TOSEM, EMSE, IST</li>
+      <li>Associate Director for Graduate Programs and Academic Affairs — SICCS, NAU</li>
+      <li>Recent keynotes — FOSSY 2025 (Portland); GiraEuropa 2026 (Italy &amp; Switzerland)</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Email: <span class="mono">igor.steinmacher@nau.edu</span><br>
+      School of Informatics, Computing and Cyber Systems<br>
+      Northern Arizona University — Flagstaff, AZ, USA
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="https://orcid.org/0000-0002-0612-5790">ORCID</a>
+      <a class="btn" href="https://dblp.org/pid/70/3474.html">DBLP</a>
+      <a class="btn" href="https://www.linkedin.com/in/igorsteinmacher/">LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="row">
+    <span>© Igor Steinmacher · built with plain HTML, hosted on GitHub Pages</span>
+    <a href="https://github.com/igorsteinmacher/igorsteinmacher.github.io">source</a>
+  </div>
+</footer>
+
+<script>
+// Signature element: deterministic contribution-graph strip.
+// Pattern is seeded so it renders identically on every visit (no fake randomness per load).
+(function () {
+  const grid = document.getElementById('contrib');
+  if (!grid) return;
+  const weeks = Math.min(52, Math.floor((grid.clientWidth || 800) / 14));
+  let seed = 20150612; // PhD year + a date — deterministic seed
+  const rand = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
+  for (let w = 0; w < weeks; w++) {
+    for (let d = 0; d < 7; d++) {
+      const cell = document.createElement('span');
+      const r = rand();
+      if (r > 0.86) cell.className = 'l4';
+      else if (r > 0.72) cell.className = 'l3';
+      else if (r > 0.55) cell.className = 'l2';
+      else if (r > 0.38) cell.className = 'l1';
+      cell.style.animationDelay = (w * 18) + 'ms';
+      grid.appendChild(cell);
+    }
+  }
+})();
+</script>
+</body>
 </html>
