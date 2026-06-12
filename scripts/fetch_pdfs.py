@@ -42,6 +42,24 @@ OA_CACHE = ROOT / "oa_cache.json"
 REPORT = ROOT / "pdf_report.md"
 UNPAYWALL_EMAIL = "igor.steinmacher@nau.edu"
 
+import logging
+
+try:
+    from pypdf import PdfReader
+    HAS_PYPDF = True
+    # pypdf logs "Ignoring wrong pointing object ..." warnings on malformed
+    # xref tables (common in older publisher PDFs); it recovers fine, so
+    # silence the noise.
+    logging.getLogger("pypdf").setLevel(logging.ERROR)
+except ImportError:
+    HAS_PYPDF = False
+
+try:
+    from pdfminer.high_level import extract_text as pdfminer_extract
+    HAS_PDFMINER = True
+except ImportError:
+    HAS_PDFMINER = False
+
 ARXIV_ID_RE = re.compile(r"(?:arxiv\.org/(?:abs|pdf)/|arXiv\.)(\d{4}\.\d{4,5})", re.I)
 STOPWORDS = {"a", "an", "the", "of", "in", "on", "for", "to", "and", "with", "at"}
 
@@ -67,6 +85,31 @@ def title_tokens(s: str) -> set:
 def arxiv_pdf_url(s: str) -> str | None:
     m = ARXIV_ID_RE.search(s or "")
     return f"https://arxiv.org/pdf/{m.group(1)}" if m else None
+
+
+def pdf_first_page_text(path: Path) -> str:
+    """Metadata title + first-page text, normalized for matching. '' on failure.
+
+    Tries pypdf first; if that yields nothing (malformed file), falls back to
+    pdfminer.six when installed. Returns '' for scanned/image-only PDFs.
+    """
+    parts = []
+    if HAS_PYPDF:
+        try:
+            reader = PdfReader(str(path), strict=False)
+            if reader.metadata and reader.metadata.title:
+                parts.append(str(reader.metadata.title))
+            if reader.pages:
+                parts.append(reader.pages[0].extract_text() or "")
+        except Exception:
+            pass
+    text = norm_title(" ".join(parts))
+    if not text and HAS_PDFMINER:
+        try:
+            text = norm_title(pdfminer_extract(str(path), maxpages=1) or "")
+        except Exception:
+            pass
+    return text
 
 
 def is_pdf(data: bytes) -> bool:
@@ -176,6 +219,11 @@ def main() -> None:
     expected = {f"{slug}.pdf" for slug, *_ in papers}
     orphans = [p for p in sorted(PUB_DIR.glob("*.pdf")) if p.name not in expected]
     lines += ["", "## Orphan files (names don't match any DBLP paper)", ""]
+    if not HAS_PYPDF:
+        lines.append("> ℹ️ Install `pypdf` (`pip install pypdf`) to also match orphans "
+                     "by the title text inside each PDF — much more reliable than "
+                     "filename matching alone.")
+        lines.append("")
     if not orphans:
         lines.append("None — every PDF in publications/ matches a paper. ✅")
     confident, review = [], []
@@ -192,6 +240,24 @@ def main() -> None:
         top = scored[:3]
         best_score = top[0][0] if top else 0.0
         second = top[1][0] if len(top) > 1 else 0.0
+
+        # content-based pass: does exactly one paper's title appear on page 1?
+        if not (top and best_score >= 0.6 and best_score - second >= 0.2):
+            page_text = pdf_first_page_text(orphan)
+            if page_text:
+                content_hits = [(slug, title) for slug, title, *_ in papers
+                                if norm_title(title) and norm_title(title) in page_text]
+                if len(content_hits) == 1:
+                    slug, title = content_hits[0]
+                    target = f"{slug}.pdf"
+                    mark = " ⚠️ (target exists — duplicate?)" if (PUB_DIR / target).exists() else ""
+                    confident.append(
+                        f"- `{orphan.name}` → **{title}**{mark} *(matched by PDF content)*  \n"
+                        f"      `git mv 'publications/{orphan.name}' 'publications/{target}'`")
+                    continue
+                elif len(content_hits) > 1:
+                    top = [(1.0, s, t) for s, t in content_hits[:3]]
+
         if top and best_score >= 0.6 and best_score - second >= 0.2:
             _, slug, title = top[0]
             target = f"{slug}.pdf"
@@ -200,7 +266,9 @@ def main() -> None:
                 f"- `{orphan.name}` → **{title}**{mark}  \n"
                 f"      `git mv 'publications/{orphan.name}' 'publications/{target}'`")
         else:
-            entry = [f"- `{orphan.name}` — candidates:"]
+            no_text = HAS_PYPDF and not pdf_first_page_text(orphan)
+            tag = " ⚠️ *no extractable text — possibly a scanned PDF; consider OCR (`ocrmypdf`)*" if no_text else ""
+            entry = [f"- `{orphan.name}`{tag} — candidates:"]
             if not top:
                 entry.append("    - (none — filename shares no words with any paper title)")
             for score, slug, title in top:
