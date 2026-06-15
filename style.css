@@ -226,3 +226,10 @@ footer a { color: var(--slate); }
 .sw p { margin: 4px 0 0; font-size: 15px; color: var(--slate); }
 .sub-h { font-family: "Space Grotesk", sans-serif; font-size: 16px;
   margin: 26px 0 8px; letter-spacing: -.01em; }
+
+/* preprint links in publication list */
+.pub .title .preprint {
+  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  color: var(--green-deep); border: 0; white-space: nowrap;
+}
+.pub .title .preprint:hover { text-decoration: underline; }
