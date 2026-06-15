@@ -94,7 +94,7 @@ header.site nav a:hover { color: var(--green-deep); }
   grid-auto-flow: column;
   grid-auto-columns: 11px;
   gap: 3px;
-  margin: 10px 0 8px;
+  margin: 6px 0 20px;
   overflow: hidden;
 }
 .contrib span {
@@ -107,9 +107,10 @@ header.site nav a:hover { color: var(--green-deep); }
 .contrib span.l3 { background: var(--green-cell-3); }
 .contrib span.l4 { background: var(--green-cell-4); }
 @keyframes cell-in { to { opacity: 1; } }
+
 .contrib-caption {
   font-family: "JetBrains Mono", monospace;
-  font-size: 11.5px; color: var(--slate); margin: 0 0 4px;
+  font-size: 11.5px; color: var(--slate); margin: 12px 0 6px;
 }
 
 /* ---- sections ---- */
@@ -175,7 +176,7 @@ ul.clean li::before {
 .btn:hover { background: var(--green-soft); }
 .btn.solid { background: var(--green-deep); color: #fff; }
 .btn.solid:hover { background: var(--green); }
-.btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
 
 /* footer */
 footer {
