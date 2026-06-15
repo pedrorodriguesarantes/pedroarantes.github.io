@@ -4,16 +4,18 @@
 
 - `journals-ese-CoutinhoBCPASGG26.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
 - `journals-jss-RochaWPSRSN26.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `conf-sigcse-WurstFKS26.pdf` ← publisher OA (cc-by): FAILED: HTTPError
+- `conf-sigcse-WurstFKS26.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
 - `conf-csedu-GomesSM0LSCG25.pdf` ← publisher OA (cc-by-nc-nd): SKIPPED: response was not a PDF
-- `conf-cui-PenneyAHPSSG25.pdf` ← publisher OA (cc-by-nc-sa): FAILED: HTTPError
+- `conf-cui-PenneyAHPSSG25.pdf` ← publisher OA (cc-by-nc-sa): SKIPPED: response was not a PDF
 - `conf-iceis-SantosFSCOG25.pdf` ← publisher OA (cc-by-nc-nd): SKIPPED: response was not a PDF
-- `conf-esem-SteinmacherPF0G24.pdf` ← publisher OA (cc-by): FAILED: HTTPError
-- `journals-peerj-cs-LimaSFLVCG23.pdf` ← publisher OA (cc-by): FAILED: HTTPError
-- `conf-sigsoft-FronchettiSWTGS23.pdf` ← publisher OA (cc-by): downloaded (516 KB)
+- `conf-esem-SteinmacherPF0G24.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
+- `conf-scam-CorreiaCGMBOAPSGSA24.pdf` ← co-author page: downloaded (244 KB)
+- `journals-peerj-cs-LimaSFLVCG23.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
 - `conf-sbes-OliveiraFVLCSZ21.pdf` ← publisher OA (cc-by-nc-sa): SKIPPED: response was not a PDF
 - `conf-oss-FronchettiW0S19.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
+- `conf-hicss-SteinmacherCG15.pdf` ← co-author page: downloaded (303 KB)
 - `conf-iceis-GeraldiOCS15.pdf` ← publisher OA (cc-by-nc-nd): SKIPPED: response was not a PDF
+- `conf-sbes-WieseRSKOG15.pdf` ← co-author page: downloaded (1073 KB)
 
 ## Orphan files (names don't match any DBLP paper)
 
@@ -230,9 +232,9 @@
 
 ## Summary
 
-- already in place: 126
-- downloaded: 1
-- no source found (not on arXiv, no CC-licensed OA): 55
+- already in place: 127
+- downloaded: 3
+- no source found (not on arXiv, no CC-licensed OA): 52
 - orphan files: 59
 
 Next: review the rename suggestions above, run them, then `python scripts/build_pubs.py` to regenerate the page.

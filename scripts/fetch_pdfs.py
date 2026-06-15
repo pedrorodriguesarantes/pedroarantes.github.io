@@ -42,6 +42,16 @@ OA_CACHE = ROOT / "oa_cache.json"
 REPORT = ROOT / "pdf_report.md"
 UNPAYWALL_EMAIL = "igor.steinmacher@nau.edu"
 
+# Co-author / personal pages that self-host PDFs of shared papers. The harvester
+# (--harvest) scrapes these for PDF links and title-matches them to missing papers.
+# Add more as you find them; order = priority.
+HARVEST_PAGES = [
+    "https://www.ime.usp.br/~gerosa/papers/",          # Marco Gerosa
+    "https://mairieli.com/publications/",              # Mairieli Wessel
+    "http://igorwiese.com/index.php/publications",     # Igor Wiese
+    "https://igor.pro.br/index.php/publications",      # your own current site
+]
+
 import logging
 
 try:
@@ -129,6 +139,37 @@ def download(url: str, dest: Path, dry: bool) -> str:
         return f"FAILED: {type(e).__name__}"
 
 
+
+def harvest_coauthor_pdfs(missing_titles: dict) -> dict:
+    """Scrape HARVEST_PAGES for <a href=*.pdf> links, match by surrounding link
+    text or filename to missing-paper titles. Returns {slug: pdf_url}."""
+    import html as _html
+    found = {}
+    # build normalized-title -> slug lookup for the papers we still need
+    want = {norm_title(t): slug for slug, t in missing_titles.items()}
+    link_re = re.compile(r'<a[^>]+href=["\']([^"\']+\.pdf)["\'][^>]*>(.*?)</a>',
+                         re.I | re.S)
+    for page in HARVEST_PAGES:
+        try:
+            html_text = fetch(page).decode("utf-8", "ignore")
+        except Exception:
+            continue
+        base = page.rsplit("/", 1)[0]
+        for href, anchor_text in link_re.findall(html_text):
+            anchor_norm = norm_title(_html.unescape(re.sub(r"<[^>]+>", " ", anchor_text)))
+            url = href if href.startswith("http") else f"{base}/{href.lstrip('/')}"
+            # try to match: the anchor text usually IS or contains the title,
+            # but often it is just "[PDF]" — in that case fall back to filename.
+            cand = anchor_norm if len(anchor_norm) > 12 else norm_title(href)
+            for wtitle, slug in want.items():
+                if slug in found:
+                    continue
+                # match if the wanted title is substantially contained
+                if wtitle and (wtitle in cand or cand in wtitle) and len(cand) > 12:
+                    found[slug] = url
+                    break
+    return found
+
 def main() -> None:
     dry = "--dry-run" in sys.argv
     want_oa = "--oa" in sys.argv
@@ -172,6 +213,14 @@ def main() -> None:
         papers.append((key_slug(pub.get("key", "")), title,
                        doi, preprints.get(norm_title(title))))
 
+    # optional: harvest co-author pages for missing PDFs
+    harvested = {}
+    if "--harvest" in sys.argv:
+        missing_titles = {slug: title for slug, title, doi, arx in papers
+                          if not (PUB_DIR / f"{slug}.pdf").exists()}
+        harvested = harvest_coauthor_pdfs(missing_titles)
+        print(f"harvest: found {len(harvested)} candidate PDFs on co-author pages")
+
     lines = ["# PDF fetch report", ""]
     n_dl = n_have = n_none = 0
 
@@ -186,6 +235,8 @@ def main() -> None:
         src_url, label = None, None
         if arx:
             src_url, label = arx, "arXiv"
+        elif slug in harvested:
+            src_url, label = harvested[slug], "co-author page"
         elif want_oa and doi:
             oa = oa_cache.get(doi, {})
             lic = ((oa.get("license") or "") if isinstance(oa, dict) else "")
