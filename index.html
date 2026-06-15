@@ -37,57 +37,49 @@
         Associate Director for Graduate Programs and Academic Affairs · SICCS</p>
       </div>
     </div>
-    <p class="thesis-label">// what I work on</p>
-    <p class="thesis">
+
+    <section id="about">
+    <h2>About</h2>
+    <p class="lead">
+      I am an Associate Professor at Northern Arizona University, where I wear several
+      hats: I lead a research group, teach across the computing curriculum, run
+      graduate and academic affairs for my school, supervise and teach students in different areas.
+    </p>
+    <p>
+      <strong>Research.</strong> I co-lead the <a href="https://reshapelab.site" target="_blank" rel="noopener">RESHAPE
+      Lab</a> with Marco Gerosa, studying the sustainability of open source software and
+      how AI reshapes software development. Our work is funded by the NSF, TRIF/NAU, and the Alfred P.
+      Sloan Foundation and has earned multiple Distinguished Paper and Best
+      Paper awards.
+    </p>
+    <p>
+      <strong>Teaching &amp; curriculum.</strong> I have taught in higher education for over
+      twenty years, from introductory programming to graduate research methods, in undergraduate
+      and graduate level. Recently, I chaired the committee that designed NAU's new interdisciplinary 
+      Bachelor of Science in Artificial Intelligence, launching Fall 2026.
+    </p>
+    <p>
+      <strong>Academic leadership.</strong> As Associate Director for Graduate Programs and
+      Academic Affairs at SICCS, I help steer graduate education, academic coordination with
+      undergraduate majors, and scheduling across eight degree programs. I also serve the
+      research community as a conference chair, reviewer, editorial board member, and mentor.
+    </p>
+  </section>  
+    <!--<p class="thesis">
       For over a decade, I have studied <em>why people join open source, why they stay, and why they
       leave</em>, and built tools that turn those findings into better onboarding, healthier
       governance, and AI that supports contributors rather than replacing them.
       I co-lead the <a href="https://reshapelab.site" target="_blank" rel="noopener">RESHAPE Lab</a>.
-    </p>
+    </p>-->
     <div class="btn-row">
       <a class="btn solid" href="publications.html">Publications</a>
       <a class="btn" href="https://scholar.google.com/citations?user=I8o8rfoAAAAJ">Google Scholar</a>
       <a class="btn" href="https://github.com/igorsteinmacher">GitHub</a>
       <a class="btn" href="Steinmacher_CV.pdf">CV (PDF)</a>
     </div>
-    <p class="contrib-caption">// every square is a contribution — and somewhere in the noise, three letters</p>
     <div class="contrib" id="contrib" aria-hidden="true"></div>
+    <p class="contrib-caption">// every square is a contribution — My research seeks to understand why and how they happen.</p>
   </div>
-
-  <section id="about">
-    <h2>About</h2>
-    <p class="lead">
-      I am an Associate Professor at Northern Arizona University, where I wear several
-      hats: I lead a research group, teach across the computing curriculum, help run
-      graduate and academic affairs for my school, and advise organizations on data and
-      AI through my own consultancy.
-    </p>
-    <p>
-      <strong>Research.</strong> I co-lead the <a href="https://reshapelab.site" target="_blank" rel="noopener">RESHAPE
-      Lab</a> with Marco Gerosa, studying the sustainability of open source software and
-      how AI reshapes software development. The work is funded by the NSF and the Alfred P.
-      Sloan Foundation and has earned multiple ACM SIGSOFT Distinguished Paper and Best
-      Paper awards.
-    </p>
-    <p>
-      <strong>Teaching &amp; curriculum.</strong> I have taught in higher education for over
-      fifteen years, from introductory programming to graduate research methods, and I
-      chaired the committee that designed NAU's new interdisciplinary Bachelor of Science
-      in Artificial Intelligence, launching Fall 2026.
-    </p>
-    <p>
-      <strong>Academic leadership.</strong> As Associate Director for Graduate Programs and
-      Academic Affairs at SICCS, I help steer graduate education, academic coordination with
-      undergraduate majors, and scheduling across eight degree programs — and I serve the
-      research community as a conference chair, editorial board member, and mentor.
-    </p>
-    <p>
-      <strong>Beyond the university.</strong> I founded DataTruth AI, a consultancy that
-      helps organizations get their data foundations right before layering AI on top. I hold
-      a PhD from the University of São Paulo (2015), was a visiting scholar at UC Irvine, and
-      was previously a faculty member at UTFPR in Brazil.
-    </p>
-  </section>
 
   <section id="research">
     <h2>Research</h2>
@@ -253,7 +245,17 @@
   let seed = 20150612; // PhD year + a date — deterministic seed
   const rand = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
 
-  const avail = Math.max(msgCols.length + 20, Math.floor((grid.clientWidth || 880) / 14));
+  const gap = 3;
+  const cw = grid.clientWidth || 880;
+  const minCols = msgCols.length + 8;
+  let cell = 11;
+  let avail = Math.floor((cw + gap) / (cell + gap));
+  if (avail < minCols) {
+    cell = Math.max(5, Math.floor((cw + gap) / minCols) - gap);
+    avail = Math.floor((cw + gap) / (cell + gap));
+    grid.style.gridTemplateRows = `repeat(7, ${cell}px)`;
+    grid.style.gridAutoColumns = `${cell}px`;
+  }
   const start = Math.floor((avail - msgCols.length) / 2); // message start column
   const end = start + msgCols.length;                     // message end column
   const half = avail / 2;
