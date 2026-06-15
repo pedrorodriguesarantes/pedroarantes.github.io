@@ -245,7 +245,17 @@
   let seed = 20150612; // PhD year + a date — deterministic seed
   const rand = () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
 
-  const avail = Math.max(msgCols.length + 20, Math.floor((grid.clientWidth || 880) / 14));
+  const gap = 3;
+  const cw = grid.clientWidth || 880;
+  const minCols = msgCols.length + 8;
+  let cell = 11;
+  let avail = Math.floor((cw + gap) / (cell + gap));
+  if (avail < minCols) {
+    cell = Math.max(5, Math.floor((cw + gap) / minCols) - gap);
+    avail = Math.floor((cw + gap) / (cell + gap));
+    grid.style.gridTemplateRows = `repeat(7, ${cell}px)`;
+    grid.style.gridAutoColumns = `${cell}px`;
+  }
   const start = Math.floor((avail - msgCols.length) / 2); // message start column
   const end = start + msgCols.length;                     // message end column
   const half = avail / 2;
