@@ -94,12 +94,12 @@ header.site nav a:hover { color: var(--green-deep); }
   grid-auto-flow: column;
   grid-auto-columns: 11px;
   gap: 3px;
-  margin: 34px 0 8px;
+  margin: 10px 0 8px;
   overflow: hidden;
 }
 .contrib span {
   width: 11px; height: 11px; border-radius: 2px;
-  background: var(--green-cell-0);
+   background: var(--green-cell-0);
   opacity: 0; animation: cell-in .4s ease forwards;
 }
 .contrib span.l1 { background: var(--green-cell-1); }
