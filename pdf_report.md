@@ -2,20 +2,6 @@
 
 ## Downloads
 
-- `journals-ese-CoutinhoBCPASGG26.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `journals-jss-RochaWPSRSN26.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `conf-sigcse-WurstFKS26.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `conf-csedu-GomesSM0LSCG25.pdf` ← publisher OA (cc-by-nc-nd): SKIPPED: response was not a PDF
-- `conf-cui-PenneyAHPSSG25.pdf` ← publisher OA (cc-by-nc-sa): SKIPPED: response was not a PDF
-- `conf-iceis-SantosFSCOG25.pdf` ← publisher OA (cc-by-nc-nd): SKIPPED: response was not a PDF
-- `conf-esem-SteinmacherPF0G24.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `conf-scam-CorreiaCGMBOAPSGSA24.pdf` ← co-author page: downloaded (244 KB)
-- `journals-peerj-cs-LimaSFLVCG23.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `conf-sbes-OliveiraFVLCSZ21.pdf` ← publisher OA (cc-by-nc-sa): SKIPPED: response was not a PDF
-- `conf-oss-FronchettiW0S19.pdf` ← publisher OA (cc-by): SKIPPED: response was not a PDF
-- `conf-hicss-SteinmacherCG15.pdf` ← co-author page: downloaded (303 KB)
-- `conf-iceis-GeraldiOCS15.pdf` ← publisher OA (cc-by-nc-nd): SKIPPED: response was not a PDF
-- `conf-sbes-WieseRSKOG15.pdf` ← co-author page: downloaded (1073 KB)
 
 ## Orphan files (names don't match any DBLP paper)
 
@@ -105,10 +91,6 @@
     - [ ] 0% match: **Pots of Gold at the End of the Rainbow: What is Success for Open Source Contributors?** → `git mv 'publications/CLEI05.pdf' 'publications/journals-tse-TrinkenreichGWC22.pdf'`
     - [ ] 0% match: **How Gender-Biased Tools Shape Newcomer Experiences in OSS Projects** → `git mv 'publications/CLEI05.pdf' 'publications/journals-tse-PadalaMFSSHHHSB22.pdf'`
     - [ ] 0% match: **Women's Participation in Open Source Software: A Survey of the Literature** → `git mv 'publications/CLEI05.pdf' 'publications/journals-tosem-TrinkenreichWSG22.pdf'`
-- `CSCW2018.pdf` — candidates:
-    - [ ] 0% match: **Pots of Gold at the End of the Rainbow: What is Success for Open Source Contributors?** → `git mv 'publications/CSCW2018.pdf' 'publications/journals-tse-TrinkenreichGWC22.pdf'`
-    - [ ] 0% match: **How Gender-Biased Tools Shape Newcomer Experiences in OSS Projects** → `git mv 'publications/CSCW2018.pdf' 'publications/journals-tse-PadalaMFSSHHHSB22.pdf'`
-    - [ ] 0% match: **Women's Participation in Open Source Software: A Survey of the Literature** → `git mv 'publications/CSCW2018.pdf' 'publications/journals-tosem-TrinkenreichWSG22.pdf'`
 - `ENINED09.pdf` — candidates:
     - [ ] 0% match: **Pots of Gold at the End of the Rainbow: What is Success for Open Source Contributors?** → `git mv 'publications/ENINED09.pdf' 'publications/journals-tse-TrinkenreichGWC22.pdf'`
     - [ ] 0% match: **How Gender-Biased Tools Shape Newcomer Experiences in OSS Projects** → `git mv 'publications/ENINED09.pdf' 'publications/journals-tse-PadalaMFSSHHHSB22.pdf'`
@@ -232,9 +214,9 @@
 
 ## Summary
 
-- already in place: 127
-- downloaded: 3
-- no source found (not on arXiv, no CC-licensed OA): 52
-- orphan files: 59
+- already in place: 139
+- downloaded (dry run): 0
+- no source found (not on arXiv): 54
+- orphan files: 58
 
 Next: review the rename suggestions above, run them, then `python scripts/build_pubs.py` to regenerate the page.
