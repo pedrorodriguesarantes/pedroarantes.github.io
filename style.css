@@ -94,7 +94,7 @@ header.site nav a:hover { color: var(--green-deep); }
   grid-auto-flow: column;
   grid-auto-columns: 11px;
   gap: 3px;
-  margin: 6px 0 20px;
+  margin: 12px 0 12px;
   overflow: hidden;
 }
 .contrib span {
@@ -114,7 +114,7 @@ header.site nav a:hover { color: var(--green-deep); }
 }
 
 /* ---- sections ---- */
-section { max-width: var(--max); margin: 0 auto; padding: 44px 24px; }
+section { max-width: var(--max); margin: 0 auto; padding: 22px 12px; }
 section + section { border-top: 1px solid var(--line); }
 h2 {
   font-size: 14px; text-transform: uppercase; letter-spacing: .1em;
@@ -176,7 +176,7 @@ ul.clean li::before {
 .btn:hover { background: var(--green-soft); }
 .btn.solid { background: var(--green-deep); color: #fff; }
 .btn.solid:hover { background: var(--green); }
-.btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.btn-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
 
 /* footer */
 footer {
