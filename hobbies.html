@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hobbies — Pedro Oliveira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+    #map {
+      width: 100%;
+      height: 520px;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+    .map-caption {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted, #888);
+      margin-top: 0.6rem;
+    }
+    .visited-list {
+      columns: 2;
+      column-gap: 2rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 540px) {
+      .visited-list { columns: 1; }
+      #map { height: 360px; }
+    }
+    .pub-row {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .pub-row .pub {
+      flex: 5;
+      margin: 0;
+    }
+    .pub-row .pub-img {
+      flex: 5;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .pub-row .pub-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      .pub-row { flex-direction: column; }
+      .pub-row .pub-img { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="row">
+    <a class="brand" href="index.html">Pedro Oliveira</a>
+    <nav>
+      <a href="index.html#research">Research</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="software.html">Software</a>
+      <a href="index.html#service">Service</a>
+      <a href="hobbies.html">News</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>Places I've been</h2>
+    <p class="lead">A map of cities I've visited — for conferences, travel, or just because.</p>
+
+    <div id="map"></div>
+  </section>
+</main>
+
+<section id="news">
+    <h2>News</h2>
+    <div class="pub-row">
+      <div class="pub">
+        <div class="meta"><span>2026</span><span class="venue">NAU · SICCS</span></div>
+        <div class="title"><a href="https://www.instagram.com/p/DYYBM-zAQv8/?img_index=1" target="_blank" rel="noopener">2026 Outstanding Graduate Research Assistant Award</a></div>
+        <div class="authors">Awarded by the School of Informatics, Computing and Cyber Systems at Northern Arizona University.</div>
+      </div>
+      <div class="pub-img">
+        <img src="images/OGR_award_2026.png" alt="Outstanding Graduate Research Assistant Award">
+      </div>
+    </div>
+
+    <div class="pub-row">
+        <div class="pub">
+          <div class="meta"><span>2026</span><span class="venue">NAU · PHT Lab</span></div>
+          <div class="title"><a href="https://scifest.org/naus-pht-lab-hosts-hozhoni-gameorama/" target="_blank" rel="noopener">Hozhoni Gameorama — Volunteer</a></div>
+          <div class="authors">Volunteered at NAU's PHT Lab inaugural Gameorama, a community research event where participants engaged with accessible health technologies in partnership with the Hozhoni Foundation.</div>
+        </div>
+        <div class="pub-img">
+          <img src="images/gameorama_2026.png" alt="Hozhoni Gameorama 2026">
+        </div>
+    </div>
+
+    <div class="pub-row">
+        <div class="pub">
+          <div class="meta"><span>2026</span><span class="venue">CHASE 2026</span></div>
+          <div class="title">Best Paper Award — Governance in Practice: How Open Source Projects Define and Document Roles</div>
+          <div class="authors">19th International Conference on Cooperative and Human Aspects of Software Engineering.</div>
+        </div>
+        <div class="pub-img">
+          <img src="images/chase_2026.png" alt="Best Paper Award CHASE 2026">
+        </div>
+    </div>
+    
+    <div class="pub-row">
+      <div class="pub">
+        <div class="meta"><span>2026</span><span class="venue">NAU · 3MRP</span></div>
+        <div class="title"><a href="https://news.nau.edu/3mrp-2026/" target="_blank" rel="noopener">3-Minute Research Presentation (3MRP) — 2026</a></div>
+        <div class="authors">Presented my dissertation research at NAU's annual 3MRP competition.</div>
+      </div>
+      <div class="pub-img">
+        <img src="images/3mrp_2026.png" alt="3MRP 2026">
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="row">
+    <span>© Pedro Oliveira · built with plain HTML, hosted on GitHub Pages</span>
+    <a href="https://github.com/pedrorodriguesarantes/pedroarantes.github.io" target="_blank" rel="noopener">source</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const places = [
+  { name: "Auckland",       lat: -36.8485, lng:  174.7633 },
+  { name: "Honolulu",       lat:  21.3069, lng: -157.8583 },
+  { name: "Seattle",        lat:  47.6062, lng: -122.3321 },
+  { name: "San Diego",      lat:  32.7157, lng: -117.1611 },
+  { name: "Los Angeles",    lat:  34.0522, lng: -118.2437 },
+  { name: "Portland",       lat:  45.5051, lng: -122.6750 },
+  { name: "Norfolk",        lat:  36.8508, lng:  -76.2859 },
+  { name: "Ottawa",         lat:  45.4215, lng:  -75.6972 },
+  { name: "Salt Lake City", lat:  40.7608, lng: -111.8910 },
+  { name: "Boise",          lat:  43.6150, lng: -116.2023 },
+  { name: "Rio de Janeiro", lat: -22.9068, lng:  -43.1729 },
+  { name: "Curitiba",       lat: -25.4290, lng:  -49.2671 },
+  { name: "Florianópolis",  lat: -27.5954, lng:  -48.5480 },
+  { name: "Campo Grande",   lat: -20.4697, lng:  -54.6201 },
+  { name: "São Paulo",      lat: -23.5505, lng:  -46.6333 },
+  { name: "Four Corners",   lat:  36.9990, lng: -109.0452 },
+  { name: "San Francisco",  lat:  37.7749, lng: -122.4194 },
+  { name: "Flagstaff",      lat:  35.1983, lng: -111.6513 },
+  { name: "Phoenix",        lat:  33.4484, lng: -112.0740 },
+  { name: "Juiz de Fora",   lat: -21.7642, lng:  -43.3496 },
+];
+
+const map = L.map('map', { zoomControl: true }).fitWorld();
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+  maxZoom: 18,
+}).addTo(map);
+
+const dot = L.divIcon({
+  className: '',
+  html: '<div style="width:10px;height:10px;border-radius:50%;background:#2563eb;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)"></div>',
+  iconSize: [10, 10],
+  iconAnchor: [5, 5],
+  popupAnchor: [0, -8],
+});
+
+const bounds = [];
+places.forEach(p => {
+  bounds.push([p.lat, p.lng]);
+  L.marker([p.lat, p.lng], { icon: dot })
+    .addTo(map)
+    .bindPopup(`<strong>${p.name}</strong>`);
+});
+
+map.fitBounds(bounds, { padding: [40, 40] });
+</script>
+</body>
+</html>
