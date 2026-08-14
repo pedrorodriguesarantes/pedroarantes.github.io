@@ -234,3 +234,20 @@ footer a { color: var(--slate); }
   color: var(--green-deep); border: 0; white-space: nowrap;
 }
 .pub .title .preprint:hover { text-decoration: underline; }
+
+.talk-venue {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent, #888); /* match whatever accent you use for .tag */
+  margin-bottom: 0.25rem;
+}
+.talk-title {
+  margin-top: 0;
+}
+.talk-authors {
+  font-style: italic;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
